@@ -1,0 +1,39 @@
+<div class="layout">
+  <nav class="navbar">
+    <span class="brand">🎫 Support Tickets</span>
+    <div class="nav-right">
+      <a routerLink="/tickets" class="btn-tickets">View Tickets</a>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h2>Admin Dashboard</h2>
+    <p class="subtitle">Overview of all support tickets</p>
+
+    <div *ngIf="loading" class="loading">Loading stats...</div>
+
+    <div class="stats-grid" *ngIf="!loading && stats">
+      <div class="stat-card total">
+        <div class="stat-number">{{ stats.total }}</div>
+        <div class="stat-label">Total Tickets</div>
+      </div>
+      <div class="stat-card open">
+        <div class="stat-number">{{ stats.open }}</div>
+        <div class="stat-label">Open</div>
+      </div>
+      <div class="stat-card progress">
+        <div class="stat-number">{{ stats.inProgress }}</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card resolved">
+        <div class="stat-number">{{ stats.resolved }}</div>
+        <div class="stat-label">Resolved</div>
+      </div>
+      <div class="stat-card closed">
+        <div class="stat-number">{{ stats.closed }}</div>
+        <div class="stat-label">Closed</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="layout">
+  <nav class="navbar">
+    <span class="brand">🎫 Support Tickets</span>
+    <div class="nav-right">
+      <span class="welcome">Hello, {{ userName }}</span>
+      <a routerLink="/tickets/new" class="btn-new">+ New Ticket</a>
+      <a routerLink="/dashboard" class="btn-dashboard" *ngIf="isAdmin">Dashboard</a>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="filters">
+      <input
+        type="text"
+        placeholder="Search tickets..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        class="search-input"/>
+      <select [(ngModel)]="selectedStatus" (change)="onStatusChange()" class="status-filter">
+        <option value="">All Statuses</option>
+        <option value="Open">Open</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </div>
+
+    <div *ngIf="loading" class="loading">Loading tickets...</div>
+
+    <div *ngIf="!loading && tickets.length === 0" class="empty">
+      No tickets found. <a routerLink="/tickets/new">Create one?</a>
+    </div>
+
+    <div *ngIf="!loading && tickets.length > 0">
+      <div class="ticket-grid">
+        <div class="ticket-card" *ngFor="let ticket of tickets">
+          <div class="ticket-header">
+            <span class="ticket-title">{{ ticket.title }}</span>
+            <span [class]="'badge ' + getStatusClass(ticket.status)">{{ ticket.status }}</span>
+          </div>
+          <p class="ticket-desc">{{ ticket.description }}</p>
+          <div class="ticket-footer">
+            <span [class]="'priority ' + getPriorityClass(ticket.priority)">{{ ticket.priority }}</span>
+            <span class="ticket-meta">By {{ ticket.createdBy }} · {{ ticket.createdAt | date:'mediumDate' }}</span>
+          </div>
+          <div class="status-update" *ngIf="isAdmin">
+            <label>Update status:</label>
+            <select (change)="updateStatus(ticket.id, $any($event.target).value)" [value]="ticket.status">
+              <option value="Open">Open</option>
+              <option value="InProgress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

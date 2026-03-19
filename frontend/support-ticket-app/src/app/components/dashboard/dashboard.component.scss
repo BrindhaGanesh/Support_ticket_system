@@ -1,0 +1,93 @@
+.layout { min-height: 100vh; background: #f5f7fa; }
+
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+
+  .brand { font-size: 1.1rem; font-weight: 600; color: #1a1a2e; }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+}
+
+.btn-tickets {
+  background: #4f46e5;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  &:hover { background: #4338ca; }
+}
+
+.btn-logout {
+  background: none;
+  border: 1px solid #d1d5db;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #6b7280;
+  &:hover { background: #f3f4f6; }
+}
+
+.content {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border: 1px solid #e5e7eb;
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  &.total .stat-number { color: #1a1a2e; }
+  &.open .stat-number { color: #1d4ed8; }
+  &.progress .stat-number { color: #b45309; }
+  &.resolved .stat-number { color: #065f46; }
+  &.closed .stat-number { color: #6b7280; }
+}
